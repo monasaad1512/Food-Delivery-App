@@ -4,7 +4,7 @@ class FoodDelivery {
   final double price;
   final bool isFavourite;
 
-  FoodDelivery({required this.name, required this.imageUrl, required this.price,this.isFavourite = false});
+ const FoodDelivery({required this.name, required this.imageUrl, required this.price,this.isFavourite = false});
 
   FoodDelivery copyWith(
     {

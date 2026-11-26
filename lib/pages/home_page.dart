@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_delivery.dart';
+import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/widgets/food_grid_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,7 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-   final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -32,7 +34,14 @@ class HomePage extends StatelessWidget {
                 mainAxisSpacing: size.height * 0.02,
                 crossAxisSpacing: size.height * 0.02,
               ),
-              itemBuilder: (context, index) => FoodGridItem(foodIndex: index),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FoodDetailsPage(foodItem: foodDeliveryList[index],)),
+                  );
+                },
+                child: FoodGridItem(foodIndex: index),
+              ),
             ),
           ],
         ),
