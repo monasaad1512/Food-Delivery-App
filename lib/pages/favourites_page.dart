@@ -13,7 +13,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-      final isLandscape =
+    final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
     final fvouriteFood = foodDeliveryList
         .where((foodItem) => foodItem.isFavourite == true)
@@ -22,7 +22,10 @@ class _FavouritesPageState extends State<FavouritesPage> {
     if (fvouriteFood.isEmpty) {
       return Column(
         children: [
-          Image.asset('assets/images/empty_state.png',height: isLandscape ? size.height * 0.5 : size.height * 0.3,),
+          Image.asset(
+            'assets/images/empty_state.png',
+            height: isLandscape ? size.height * 0.5 : size.height * 0.3,
+          ),
           Text('No Favourite Food Items', style: TextStyle(fontSize: 22)),
         ],
       );
@@ -33,9 +36,16 @@ class _FavouritesPageState extends State<FavouritesPage> {
         itemCount: fvouriteFood.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-             Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => FoodDetailsPage(foodItem: fvouriteFood[index],)),
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) {
+                  int targetedIndex = foodDeliveryList.indexOf(
+                    fvouriteFood[index],
                   );
+                  return FoodDetailsPage(foodIndex: targetedIndex);
+                },
+              ),
+            );
           },
           child: Card(
             color: Colors.white,
