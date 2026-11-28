@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/pages/bottom_navbar_page.dart';
+import 'package:food_delivery/pages/food_details_page.dart';
 
 void main() {
   // لو عايزين نلغى وضع معين
@@ -32,7 +33,11 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.deepOrange,
         ).copyWith(primary: Colors.deepOrange),
       ),
-      home: const BottomNavbarPage(),
+      // Named Routes
+      routes: {
+        '/': (context) => const BottomNavbarPage(),
+        FoodDetailsPage.routeName : (context) => const FoodDetailsPage()
+      },
     );
   }
 }

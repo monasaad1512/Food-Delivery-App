@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_delivery.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
+import 'package:food_delivery/ui_models/food_details_args.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
@@ -36,15 +37,10 @@ class _FavouritesPageState extends State<FavouritesPage> {
         itemCount: fvouriteFood.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  int targetedIndex = foodDeliveryList.indexOf(
-                    fvouriteFood[index],
-                  );
-                  return FoodDetailsPage(foodIndex: targetedIndex);
-                },
-              ),
+            int targetedIndex = foodDeliveryList.indexOf(fvouriteFood[index]);
+            Navigator.of(context).pushNamed(
+              FoodDetailsPage.routeName,
+              arguments: FoodDetailsArgs(foodIndex: targetedIndex),
             );
           },
           child: Card(
