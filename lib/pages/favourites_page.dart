@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_delivery.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/ui_models/food_details_args.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 
 class FavouritesPage extends StatefulWidget {
   const FavouritesPage({super.key});
@@ -21,14 +22,16 @@ class _FavouritesPageState extends State<FavouritesPage> {
         .toList();
 
     if (fvouriteFood.isEmpty) {
-      return Column(
-        children: [
-          Image.asset(
-            'assets/images/empty_state.png',
-            height: isLandscape ? size.height * 0.5 : size.height * 0.3,
-          ),
-          Text('No Favourite Food Items', style: TextStyle(fontSize: 22)),
-        ],
+      return Center(
+        child: Column(
+          children: [
+            Image.asset(
+              AppAssets.emptyState,
+              height: isLandscape ? size.height * 0.5 : size.height * 0.3,
+            ),
+            Text('No Favourite Food Items', style: TextStyle(fontSize: 22)),
+          ],
+        ),
       );
     }
     return Padding(
